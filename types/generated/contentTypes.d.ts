@@ -677,6 +677,186 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiDistrictDistrict extends Schema.CollectionType {
+  collectionName: 'districts';
+  info: {
+    singularName: 'district';
+    pluralName: 'districts';
+    displayName: 'District';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Name: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::district.district',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::district.district',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGnDivisionGnDivision extends Schema.CollectionType {
+  collectionName: 'gn_divisions';
+  info: {
+    singularName: 'gn-division';
+    pluralName: 'gn-divisions';
+    displayName: 'GN_Division';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Name: Attribute.String;
+    village_streets: Attribute.Relation<
+      'api::gn-division.gn-division',
+      'oneToMany',
+      'api::village-street.village-street'
+    >;
+    Ward_Id: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::gn-division.gn-division',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::gn-division.gn-division',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLocalAuthorityLocalAuthority extends Schema.CollectionType {
+  collectionName: 'local_authorities';
+  info: {
+    singularName: 'local-authority';
+    pluralName: 'local-authorities';
+    displayName: 'Local_Authority';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Name: Attribute.String;
+    Seat_Id: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::local-authority.local-authority',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::local-authority.local-authority',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSeatSeat extends Schema.CollectionType {
+  collectionName: 'seats';
+  info: {
+    singularName: 'seat';
+    pluralName: 'seats';
+    displayName: 'Seat';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Name: Attribute.String;
+    District_Id: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::seat.seat', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::seat.seat', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiVillageStreetVillageStreet extends Schema.CollectionType {
+  collectionName: 'village_streets';
+  info: {
+    singularName: 'village-street';
+    pluralName: 'village-streets';
+    displayName: 'Village-Street';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Name: Attribute.String;
+    gn_division: Attribute.Relation<
+      'api::village-street.village-street',
+      'manyToOne',
+      'api::gn-division.gn-division'
+    >;
+    GN_Division_Id: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::village-street.village-street',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::village-street.village-street',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiWardWard extends Schema.CollectionType {
+  collectionName: 'wards';
+  info: {
+    singularName: 'ward';
+    pluralName: 'wards';
+    displayName: 'Ward';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Name: Attribute.String;
+    Local_Authority_Id: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::ward.ward', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::ward.ward', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -693,6 +873,12 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::district.district': ApiDistrictDistrict;
+      'api::gn-division.gn-division': ApiGnDivisionGnDivision;
+      'api::local-authority.local-authority': ApiLocalAuthorityLocalAuthority;
+      'api::seat.seat': ApiSeatSeat;
+      'api::village-street.village-street': ApiVillageStreetVillageStreet;
+      'api::ward.ward': ApiWardWard;
     }
   }
 }

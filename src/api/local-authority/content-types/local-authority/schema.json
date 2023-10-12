@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "local_authorities",
+  "info": {
+    "singularName": "local-authority",
+    "pluralName": "local-authorities",
+    "displayName": "Local_Authority",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Seat_Id": {
+      "type": "integer"
+    }
+  }
+}

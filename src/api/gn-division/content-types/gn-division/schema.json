@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "gn_divisions",
+  "info": {
+    "singularName": "gn-division",
+    "pluralName": "gn-divisions",
+    "displayName": "GN_Division",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "village_streets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::village-street.village-street",
+      "mappedBy": "gn_division"
+    },
+    "Ward_Id": {
+      "type": "integer"
+    }
+  }
+}

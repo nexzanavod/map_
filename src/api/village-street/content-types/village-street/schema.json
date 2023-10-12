@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "village_streets",
+  "info": {
+    "singularName": "village-street",
+    "pluralName": "village-streets",
+    "displayName": "Village-Street",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "gn_division": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::gn-division.gn-division",
+      "inversedBy": "village_streets"
+    },
+    "GN_Division_Id": {
+      "type": "integer"
+    }
+  }
+}
